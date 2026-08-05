@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+  <g fill="none" stroke="#A6E515" stroke-width="44" stroke-linejoin="miter">
+    <path d="M655 455 L1600 205 L1600 1300 L655 1300 Z"/>
+    <path d="M655 455 L655 1400"/>
+    <circle cx="512" cy="1400" r="145"/>
+    <path d="M1120 625 L1270 820 L970 820 Z"/>
+    <path d="M740 875 L1520 875 L1425 1060 L830 1060 Z"/>
+    <path d="M805 1125 L1445 1125 L1530 1300 L890 1300 Z"/>
+    <path d="M995 1330 L1255 1330 L1125 1520 Z"/>
+  </g>
+</svg>
