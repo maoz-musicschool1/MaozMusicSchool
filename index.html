@@ -745,6 +745,10 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
 </footer>
 
 <script>
+/* תמיד לפתוח בראש העמוד — בלי לשחזר גלילה קודמת */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.addEventListener('pageshow', function(){ if(!location.hash){ window.scrollTo(0, 0); } });
+
 /* ==========  הגדרות — למלא לפני עלייה לאוויר  ========== */
 // 1) כתובת Google Apps Script (ראה קובץ CRM-SETUP.md)
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbweNzaR1dQK3ac7XtBsbZDnIpqi8SlUeAMc-5LSCZI_Swv3qrPFUGEG0Pq3PDWih3a0Ag/exec';
