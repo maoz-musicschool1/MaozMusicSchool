@@ -821,6 +821,13 @@ function scrollToQuiz(){
   if(!box) return;
   var block = box.getBoundingClientRect().height > window.innerHeight * .85 ? 'start' : 'center';
   box.scrollIntoView({behavior:'smooth', block: block});
+  /* אם הגלילה החלקה נקטעה — קופצים ישירות */
+  setTimeout(function(){
+    var r = box.getBoundingClientRect();
+    if(r.top < -40 || r.top > window.innerHeight * .6){
+      box.scrollIntoView({behavior:'instant', block: block});
+    }
+  }, 1200);
 }
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
   a.addEventListener('click', function(e){
@@ -830,7 +837,6 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
       e.preventDefault();
       history.replaceState(null, '', '#quiz');
       scrollToQuiz();
-      setTimeout(scrollToQuiz, 900); /* משלים אם הגלילה נקטעה */
       return;
     }
     var el = document.querySelector(id);
