@@ -815,6 +815,20 @@ var onScroll = function(){ navEl.classList.toggle('scrolled', window.scrollY > 4
 window.addEventListener('scroll', onScroll, {passive:true});
 onScroll();
 
+/* ניווט פנימי אמין: אם הגלילה החלקה נקטעת — משלימים אותה */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(){
+    var id = a.getAttribute('href');
+    if(!id || id.length < 2) return;
+    var el = document.querySelector(id);
+    if(!el) return;
+    setTimeout(function(){
+      var top = el.getBoundingClientRect().top;
+      if(Math.abs(top - 72) > 120){ el.scrollIntoView({behavior:'smooth'}); }
+    }, 1000);
+  });
+});
+
 /* reveal on scroll */
 var revealEls = document.querySelectorAll('.reveal');
 if('IntersectionObserver' in window){
