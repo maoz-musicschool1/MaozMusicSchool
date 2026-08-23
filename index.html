@@ -358,9 +358,23 @@ section{padding:110px 6vw;position:relative}
 .loc-badge{
   display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px;
   margin-top:18px;background:rgba(166,229,21,.08);border:1px solid rgba(166,229,21,.5);
-  color:var(--ink);font-weight:700;font-size:.98rem;
+  color:var(--ink);font-weight:700;font-size:.98rem;font-family:inherit;
   padding:12px 22px;border-radius:16px;box-shadow:0 0 24px rgba(166,229,21,.12);
+  cursor:pointer;transition:.25s;
 }
+.loc-badge:hover{border-color:var(--lime);box-shadow:0 0 32px rgba(166,229,21,.3)}
+.nav-pop{
+  display:none;position:absolute;top:calc(100% + 10px);inset-inline:0;margin-inline:auto;
+  width:max-content;z-index:60;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px;
+  box-shadow:0 14px 44px rgba(0,0,0,.55);
+}
+.nav-pop.open{display:flex;flex-direction:column;gap:4px}
+.nav-pop a{
+  display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;
+  font-weight:700;font-size:.95rem;padding:12px 22px;border-radius:11px;transition:.2s;
+}
+.nav-pop a:hover{background:rgba(166,229,21,.1);color:var(--lime)}
 
 /* ---------- WHATSAPP ---------- */
 .wa-cta{
@@ -651,7 +665,13 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
   <div class="wrap" style="text-align:center">
     <h2 class="sec-head reveal">מוכנים להתחיל?<br><span class="accent">ענו על 4 שאלות קצרות.</span></h2>
     <p class="reveal d1" style="color:var(--muted);max-width:520px;margin-inline:auto">נבין מי אתם, נתאים לכם מסלול ומורה — ונחזור אליכם תוך 24 שעות. בלי התחייבות.</p>
-    <div class="reveal d2"><span class="loc-badge">📍 רחוב שטנר 7, ירושלים  ·  🅿️ חניה זמינה במקום</span></div>
+    <div class="reveal d2" style="position:relative">
+      <button class="loc-badge" id="locBadge" type="button" onclick="toggleNavPop(event)">📍 רחוב שטנר 7, ירושלים&nbsp;&nbsp;·&nbsp;&nbsp;🅿️ חניה זמינה במקום</button>
+      <div class="nav-pop" id="navPop" dir="rtl">
+        <a href="https://waze.com/ul?q=Shatner%20St%207%20Jerusalem&navigate=yes" target="_blank" rel="noopener">🚗 ניווט ב־Waze</a>
+        <a href="https://maps.google.com/?q=Shatner+St+7+Jerusalem" target="_blank" rel="noopener">🗺️ פתיחה ב־Google Maps</a>
+      </div>
+    </div>
 
     <div class="quiz-box reveal d1" dir="rtl">
       <div class="progress" id="progress"><i></i><i></i><i></i><i></i><i></i></div>
@@ -771,6 +791,18 @@ const LEAD_EMAIL = 'maozmusicads@gmail.com'; // גיבוי בלבד
 function toggleMenu(){
   document.getElementById('menuPanel').classList.toggle('open');
 }
+
+/* בחירת ניווט — Waze / Google Maps */
+function toggleNavPop(ev){
+  ev.stopPropagation();
+  document.getElementById('navPop').classList.toggle('open');
+}
+document.addEventListener('click', function(ev){
+  var pop = document.getElementById('navPop');
+  if(pop && pop.classList.contains('open') && !pop.contains(ev.target)){
+    pop.classList.remove('open');
+  }
+});
 
 /* כפתורי וואטסאפ */
 var waBase = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=';
