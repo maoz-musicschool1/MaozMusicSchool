@@ -819,6 +819,7 @@ onScroll();
 function scrollToQuiz(){
   var box = document.querySelector('.quiz-box');
   if(!box) return;
+  document.querySelectorAll('#quiz .reveal').forEach(function(el){ el.classList.add('in'); });
   var block = box.getBoundingClientRect().height > window.innerHeight * .85 ? 'start' : 'center';
   box.scrollIntoView({behavior:'smooth', block: block});
   /* אם הגלילה החלקה נקטעה — קופצים ישירות */
