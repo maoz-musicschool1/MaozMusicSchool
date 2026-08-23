@@ -393,6 +393,8 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
   .team-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:720px){
+  .marquee{padding:11px 0}
+  .marquee span{font-size:.8rem;margin:0 16px;letter-spacing:.09em}
   .sec-label{display:none}
   .indent{padding-inline-start:0}
   section{padding:78px 6vw}
@@ -824,7 +826,11 @@ if('IntersectionObserver' in window){
   }
   build();
 
+  /* בנייה מחדש רק כשהרוחב באמת השתנה — בנייד resize נורה גם בגלילה (שורת הכתובת) וגורם לקפיצות */
+  var lastW = window.innerWidth;
   window.addEventListener('resize', function(){
+    if(window.innerWidth === lastW) return;
+    lastW = window.innerWidth;
     clearTimeout(timer);
     timer = setTimeout(build, 250);
   });
