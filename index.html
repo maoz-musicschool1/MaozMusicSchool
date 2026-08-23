@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 :root{
   --bg:#07070B;
@@ -704,6 +705,8 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
         <div class="field"><label for="qAge">גיל</label><input type="number" id="qAge" placeholder="לדוגמה: 17" min="6" max="99"></div>
         <div class="field"><label for="qPhone">טלפון (וואטסאפ)</label><input type="tel" id="qPhone" placeholder="050-0000000" dir="ltr" style="text-align:left"></div>
         <div class="field"><label for="qEmail">אימייל</label><input type="email" id="qEmail" placeholder="you@email.com" dir="ltr" style="text-align:left"></div>
+        <div style="position:absolute;inset-inline-start:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true"><label for="hpWebsite">אתר</label><input type="text" id="hpWebsite" tabindex="-1" autocomplete="off"></div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEZPUkSn9gdL-CDH" data-theme="dark" data-callback="cfDone" style="margin-top:10px"></div>
       </div>
 
       <div class="step" data-step="6">
@@ -828,11 +831,20 @@ if('IntersectionObserver' in window){
 })();
 
 /* ---------- QUIZ ---------- */
+var quizStart = Date.now(); /* אנטי־בוט: מודדים כמה זמן לקח למלא */
 var state = { goal:null, instrument:[], experience:null, writer:null, demo:'', name:'', age:'', phone:'', email:'' };
 var step = 1;
 var totalSteps = 5;
 var btnNext = document.getElementById('btnNext');
 var btnBack = document.getElementById('btnBack');
+
+/* Cloudflare Turnstile */
+function cfDone(){ validate(); }
+function cfTokenOk(){
+  if(!window.turnstile) return true; /* הסקריפט לא נטען — נשענים על שאר ההגנות */
+  var inp = document.querySelector('[name="cf-turnstile-response"]');
+  return !!(inp && inp.value);
+}
 
 function render(){
   document.querySelectorAll('.step').forEach(function(s){
@@ -858,7 +870,7 @@ function validate(){
     state.age = document.getElementById('qAge').value.trim();
     state.phone = document.getElementById('qPhone').value.trim();
     state.email = document.getElementById('qEmail').value.trim();
-    ok = state.name.length>1 && state.phone.length>=8;
+    ok = state.name.length>1 && state.phone.length>=8 && cfTokenOk();
   }
   btnNext.disabled = !ok;
 }
@@ -907,7 +919,10 @@ function submitLead(){
     experience: state.experience || '',
     writer: state.writer,
     demo: state.demo || '',
-    source: document.referrer || 'כניסה ישירה'
+    source: document.referrer || 'כניסה ישירה',
+    hp: (document.getElementById('hpWebsite')||{}).value || '',
+    elapsed: Math.round((Date.now() - quizStart) / 1000),
+    cfToken: (document.querySelector('[name="cf-turnstile-response"]')||{}).value || ''
   };
 
   btnNext.disabled = true;
