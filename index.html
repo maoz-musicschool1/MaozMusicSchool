@@ -111,10 +111,14 @@ img{display:block;max-width:100%}
 .hero .sub b{color:var(--ink)}
 .hero-ctas{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .btn-primary{
-  background:var(--lime);color:#07070B;text-decoration:none;font-weight:900;
-  font-size:1.05rem;padding:18px 40px;border-radius:16px;transition:.25s;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:14px;
+  background:linear-gradient(135deg,#CDF75A,var(--lime) 55%,#8FCB0F);color:#07070B;text-decoration:none;font-weight:900;
+  font-size:1.05rem;padding:18px 38px;border-radius:100px;transition:.25s;border:none;cursor:pointer;
+  box-shadow:0 6px 26px rgba(166,229,21,.3),inset 0 1px 0 rgba(255,255,255,.4);
 }
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(166,229,21,.35)}
+.btn-primary .arr{display:inline-block;transition:transform .25s;font-weight:900}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 46px rgba(166,229,21,.5),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-primary:hover .arr{transform:translateX(-6px)}
 .btn-ghost{
   border:1px solid rgba(244,242,236,.35);color:var(--ink);text-decoration:none;font-weight:700;
   font-size:1.05rem;padding:18px 34px;border-radius:16px;transition:.25s;
@@ -432,7 +436,7 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
   .hero{padding:110px 18px 70px}
   .hero-ctas{margin-top:32px;gap:10px;flex-direction:column;align-items:center}
   .hero-ctas .btn-primary{
-    font-size:.98rem;font-weight:800;padding:14px 30px;border-radius:13px;width:auto;
+    font-size:.98rem;font-weight:800;padding:14px 28px;border-radius:100px;width:auto;
   }
   .hero-ctas .btn-ghost{
     font-size:.9rem;font-weight:600;padding:11px 20px;border-radius:11px;
@@ -511,7 +515,7 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
     <h1>מעוז<br><span class="l2">ממדים</span></h1>
     <p class="sub">כאן לא לומדים רק אקורדים. כאן לומדים <b>לכתוב, להקליט ולהוביל הלל</b> — מהשיעור הראשון ועד האלבום הראשון שלכם.</p>
     <div class="hero-ctas">
-      <a class="btn-primary" href="#quiz">איזה מסלול מתאים לי? ←</a>
+      <a class="btn-primary" href="#quiz">איזה מסלול מתאים לי? <span class="arr">←</span></a>
       <a class="btn-ghost" href="#about">ספרו לי עוד</a>
     </div>
   </div>
