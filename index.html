@@ -786,6 +786,15 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
 </footer>
 
 <script>
+/* מובייל: וידאו אנכי בעמוד הראשי */
+(function(){
+  if (window.matchMedia('(max-width:720px)').matches) {
+    var v = document.querySelector('.hero-media video');
+    var s = v && v.querySelector('source');
+    if (s) { s.src = 'img/hero-mobile.mp4'; v.load(); if (v.play) v.play().catch(function(){}); }
+  }
+})();
+
 /* תמיד לפתוח בראש העמוד — בלי לשחזר גלילה קודמת */
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.addEventListener('pageshow', function(){ if(!location.hash){ window.scrollTo(0, 0); } });
