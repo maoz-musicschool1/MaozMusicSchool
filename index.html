@@ -791,7 +791,14 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
   if (window.matchMedia('(max-width:720px)').matches) {
     var v = document.querySelector('.hero-media video');
     var s = v && v.querySelector('source');
-    if (s) { s.src = 'img/hero-mobile.mp4'; v.load(); if (v.play) v.play().catch(function(){}); }
+    if (s) {
+      s.src = 'img/hero-mobile.mp4';
+      v.muted = true;
+      v.load();
+      var tryPlay = function(){ if (v.play) v.play().catch(function(){}); };
+      v.addEventListener('canplay', tryPlay, {once: true});
+      tryPlay();
+    }
   }
 })();
 
