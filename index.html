@@ -506,7 +506,7 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
 <!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-media">
-    <video autoplay muted loop playsinline poster="img/hero-poster.jpg">
+    <video autoplay muted loop playsinline preload="auto" poster="img/hero-poster.jpg">
       <source src="img/hero.mp4" type="video/mp4">
     </video>
   </div>
@@ -786,20 +786,21 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
 </footer>
 
 <script>
-/* מובייל: וידאו אנכי בעמוד הראשי */
+/* וידאו ראשי: גרסה אנכית במובייל + הפעלה אמינה */
 (function(){
-  if (window.matchMedia('(max-width:720px)').matches) {
-    var v = document.querySelector('.hero-media video');
-    var s = v && v.querySelector('source');
-    if (s) {
-      s.src = 'img/hero-mobile.mp4';
-      v.muted = true;
-      v.load();
-      var tryPlay = function(){ if (v.play) v.play().catch(function(){}); };
-      v.addEventListener('canplay', tryPlay, {once: true});
-      tryPlay();
-    }
+  var v = document.querySelector('.hero-media video');
+  if (!v) return;
+  var s = v.querySelector('source');
+  if (s && window.matchMedia('(max-width:720px)').matches) {
+    s.src = 'img/hero-mobile.mp4';
+    v.load();
   }
+  v.muted = true;
+  var tryPlay = function(){ if (v.play) v.play().catch(function(){}); };
+  v.addEventListener('loadeddata', tryPlay);
+  v.addEventListener('canplay', tryPlay);
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) tryPlay(); });
+  tryPlay();
 })();
 
 /* תמיד לפתוח בראש העמוד — בלי לשחזר גלילה קודמת */
