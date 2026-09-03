@@ -6,6 +6,7 @@
 <title>מעוז ממדים | בית ספר למוזיקה והלל בירושלים — שיעורי גיטרה, שירה, קלידים ותופים</title>
 <meta name="description" content="בית ספר למוזיקה והלל בירושלים: שיעורי גיטרה, שירה, קלידים, תופים, בס, סקסופון, כינור והפקה מוזיקלית עם מוזיקאים פעילים. 590 ₪ לחודש, סבסוד עד 50%. רחוב שטנר 7, ירושלים — חנייה במקום.">
 <link rel="icon" href="logo.png" type="image/png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="canonical" href="https://maozmusicschool.com/">
 <meta name="theme-color" content="#07070B">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -21,6 +22,8 @@
 <meta property="og:image" content="https://maozmusicschool.com/img/hero-poster.jpg">
 <meta property="og:image:secure_url" content="https://maozmusicschool.com/img/hero-poster.jpg">
 <meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
 <meta property="og:image:alt" content="מעוז ממדים — בית ספר למוזיקה והלל בירושלים">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="מעוז ממדים | בית ספר למוזיקה והלל בירושלים">
@@ -899,9 +902,7 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
     <p style="margin-top:14px">📍 <a href="https://maps.google.com/?q=Shatner+St+7+Jerusalem" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(166,229,21,.5)">רחוב שטנר 7, ירושלים</a><br><span style="color:var(--muted)">🅿️ חנייה זמינה במקום</span></p>
   </div>
   <div class="socials">
-    <a href="#" aria-label="Instagram">◎</a>
-    <a href="#" aria-label="YouTube">▶</a>
-    <a href="#" aria-label="WhatsApp">✆</a>
+    <a id="waFooter" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
   </div>
   <p>© 2026 Maoz Memadim · maozmusicschool.com</p>
 </footer>
@@ -955,6 +956,8 @@ document.addEventListener('click', function(ev){
 var waBase = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=';
 document.getElementById('waFloat').href = waBase +
   encodeURIComponent('היי! הגעתי מהאתר של מעוז ממדים ואשמח לפרטים על הלימודים');
+var waFooterEl = document.getElementById('waFooter');
+if (waFooterEl) waFooterEl.href = document.getElementById('waFloat').href;
 
 /* nav background on scroll */
 var navEl = document.querySelector('.nav');
@@ -1096,7 +1099,9 @@ function validate(){
     state.age = document.getElementById('qAge').value.trim();
     state.phone = document.getElementById('qPhone').value.trim();
     state.email = document.getElementById('qEmail').value.trim();
-    ok = state.name.length>1 && state.phone.length>=8 && cfTokenOk();
+    var phoneDigits = state.phone.replace(/\D/g,'');
+    var emailOk = !state.email || /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(state.email);
+    ok = state.name.length>1 && phoneDigits.length>=9 && emailOk && cfTokenOk();
   }
   btnNext.disabled = !ok;
 }
