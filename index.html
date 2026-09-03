@@ -29,10 +29,12 @@
 <meta name="twitter:title" content="מעוז ממדים | בית ספר למוזיקה והלל בירושלים">
 <meta name="twitter:description" content="שיעורי נגינה ושירה אישיים עם מוזיקאים פעילים. 590 ₪ לחודש, סבסוד עד 50%. רחוב שטנר 7, ירושלים.">
 <meta name="twitter:image" content="https://maozmusicschool.com/img/hero-poster.jpg">
-<link rel="preload" as="image" href="img/hero-poster.jpg">
+<link rel="preload" as="image" href="img/hero-poster.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400..900&family=Archivo+Black&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400..900&family=Archivo+Black&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400..900&family=Archivo+Black&display=swap"></noscript>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 :root{
@@ -631,7 +633,7 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
 <header class="hero" id="top">
   <div class="hero-media">
     <video autoplay muted loop playsinline preload="auto" poster="img/hero-poster.jpg">
-      <source src="img/hero.mp4" type="video/mp4">
+      <source data-desktop="img/hero.mp4" data-mobile="img/hero-mobile.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-inner">
@@ -913,8 +915,12 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
   var v = document.querySelector('.hero-media video');
   if (!v) return;
   var s = v.querySelector('source');
-  if (s && window.matchMedia('(max-width:720px)').matches) {
-    s.src = 'img/hero-mobile.mp4';
+  var conn = navigator.connection || {};
+  var lite = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || '');
+  if (s && !lite) {
+    var small = window.matchMedia('(max-width:720px)').matches;
+    s.src = small ? (s.getAttribute('data-mobile') || 'img/hero-mobile.mp4')
+                  : (s.getAttribute('data-desktop') || 'img/hero.mp4');
     v.load();
   }
   v.muted = true;
