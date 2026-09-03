@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://maozmusicschool.com/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://maozmusicschool.com/img/hero-poster.jpg</image:loc>
+      <image:title>מעוז ממדים — בית ספר למוזיקה והלל בירושלים</image:title>
+    </image:image>
+  </url>
+</urlset>
