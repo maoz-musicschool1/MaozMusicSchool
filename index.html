@@ -619,7 +619,7 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
 {"@type":"Question","name":"איפה בית הספר נמצא?","acceptedAnswer":{"@type":"Answer","text":"רחוב שטנר 7, ירושלים. יש חנייה במקום. ניתן לנווט ב־Waze או Google Maps."}},
 {"@type":"Question","name":"האם צריך ניסיון קודם כדי להירשם?","acceptedAnswer":{"@type":"Answer","text":"לא. אנחנו מלמדים מהצליל הראשון ועד להקלטת אלבום. אחרי שאלון קצר של 4 שאלות נתאים לכם מורה ומסלול ונחזור אליכם תוך 24 שעות."}},
 {"@type":"Question","name":"אני כותב/ת שירים — האם אפשר לקבל משוב?","acceptedAnswer":{"@type":"Answer","text":"כן. בשאלון ההרשמה אפשר לצרף קישור לדמו (גם הקלטה מהטלפון), והצוות שלנו ייתן משוב מקצועי."}},
-{"@type":"Question","name":"Do you teach in English?","acceptedAnswer":{"@type":"Answer","text":"Yes. Maoz Memadim (Maoz Music School) is a music school and artist incubator in Jerusalem. Our team teaches in Hebrew and English."}}
+{"@type":"Question","name":"האם אפשר ללמוד גם באנגלית?","acceptedAnswer":{"@type":"Answer","text":"כן. חלק מהמורים שלנו מלמדים גם באנגלית, כך שגם עולים חדשים ודוברי אנגלית יכולים להצטרף. ציינו זאת בשאלון ונתאים לכם מורה מתאים."}}
 ]}
 </script>
 </head>
@@ -647,6 +647,7 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
       <source data-desktop="img/hero.mp4" data-mobile="img/hero-mobile.mp4" type="video/mp4">
     </video>
   </div>
+  <script>(function(){var v=document.querySelector(".hero-media video"),s=v&&v.querySelector("source");if(!s)return;s.src=window.matchMedia("(max-width:720px)").matches?s.dataset.mobile:s.dataset.desktop;v.muted=true;v.load();var p=function(){v.play&&v.play().catch(function(){})};v.addEventListener("loadeddata",p);v.addEventListener("canplay",p);document.addEventListener("visibilitychange",function(){document.hidden||p()});p();})();</script>
   <div class="hero-inner">
     <div class="hero-note">בית ספר למוזיקה · חממה לאמנים</div>
     <h1>מעוז<br><span class="l2">ממדים</span></h1>
@@ -914,13 +915,10 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
   <details style="border-top:1px solid #23232b;padding:16px 0;"><summary style="cursor:pointer;font-weight:700;color:#f2f2f5;">איפה בית הספר נמצא?</summary><p style="color:#b5b5c2;margin:10px 0 0;line-height:1.7;">רחוב שטנר 7, ירושלים. יש חנייה במקום. ניתן לנווט ב־Waze או Google Maps.</p></details>
   <details style="border-top:1px solid #23232b;padding:16px 0;"><summary style="cursor:pointer;font-weight:700;color:#f2f2f5;">האם צריך ניסיון קודם כדי להירשם?</summary><p style="color:#b5b5c2;margin:10px 0 0;line-height:1.7;">לא. אנחנו מלמדים מהצליל הראשון ועד להקלטת אלבום. אחרי שאלון קצר של 4 שאלות נתאים לכם מורה ומסלול ונחזור אליכם תוך 24 שעות.</p></details>
   <details style="border-top:1px solid #23232b;padding:16px 0;"><summary style="cursor:pointer;font-weight:700;color:#f2f2f5;">אני כותב/ת שירים — האם אפשר לקבל משוב?</summary><p style="color:#b5b5c2;margin:10px 0 0;line-height:1.7;">כן. בשאלון ההרשמה אפשר לצרף קישור לדמו (גם הקלטה מהטלפון), והצוות שלנו ייתן משוב מקצועי.</p></details>
-  <details style="border-top:1px solid #23232b;border-bottom:1px solid #23232b;padding:16px 0;" dir="ltr"><summary style="cursor:pointer;font-weight:700;color:#f2f2f5;">Do you teach in English?</summary><p style="color:#b5b5c2;margin:10px 0 0;line-height:1.7;">Yes. Maoz Memadim (Maoz Music School) is a music school and artist incubator in Jerusalem. Our team teaches in Hebrew and English.</p></details>
-</section>
-
-<!-- EN brand block (SEO: brand queries in Latin script) -->
-<section id="en" dir="ltr" style="padding:32px 24px 56px;max-width:860px;margin:0 auto;text-align:center;color:#8b8b98;font-size:14px;line-height:1.7;">
-  <p style="letter-spacing:.18em;text-transform:uppercase;font-size:11px;margin-bottom:10px;">Maoz Memadim · Jerusalem</p>
-  <p><strong style="color:#f2f2f5;">Maoz Music School (Maoz Memadim)</strong> is a music school and artist incubator in Jerusalem, part of the Maoz Music family. Guitar, vocal, keys, drums, bass, saxophone, violin and music-production lessons with working musicians — from your first chord to your first recorded album. 590 ₪/month, up to 50% subsidy. Shatner St 7, Jerusalem.</p>
+  <details>
+    <summary>האם אפשר ללמוד גם באנגלית?</summary>
+    <p>כן. חלק מהמורים שלנו מלמדים גם באנגלית, כך שגם עולים חדשים ודוברי אנגלית יכולים להצטרף. ציינו זאת בשאלון ונתאים לכם מורה מתאים.</p>
+  </details>
 </section>
 
 <footer>
@@ -933,32 +931,15 @@ footer .socials a:hover{border-color:var(--lime);color:var(--lime)}
     <p style="margin-top:14px">📍 <a href="https://maps.google.com/?q=Shatner+St+7+Jerusalem" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(166,229,21,.5)">רחוב שטנר 7, ירושלים</a><br><span style="color:var(--muted)">🅿️ חנייה זמינה במקום</span></p>
   </div>
   <div class="socials">
+    <a href="https://www.instagram.com/maoz_music/" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
+    <a href="https://www.youtube.com/@MaozMusic" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
     <a id="waFooter" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
   </div>
   <p>© 2026 Maoz Memadim · maozmusicschool.com</p>
 </footer>
 
 <script>
-/* וידאו ראשי: גרסה אנכית במובייל + הפעלה אמינה */
-(function(){
-  var v = document.querySelector('.hero-media video');
-  if (!v) return;
-  var s = v.querySelector('source');
-  var conn = navigator.connection || {};
-  var lite = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || '');
-  if (s && !lite) {
-    var small = window.matchMedia('(max-width:720px)').matches;
-    s.src = small ? (s.getAttribute('data-mobile') || 'img/hero-mobile.mp4')
-                  : (s.getAttribute('data-desktop') || 'img/hero.mp4');
-    v.load();
-  }
-  v.muted = true;
-  var tryPlay = function(){ if (v.play) v.play().catch(function(){}); };
-  v.addEventListener('loadeddata', tryPlay);
-  v.addEventListener('canplay', tryPlay);
-  document.addEventListener('visibilitychange', function(){ if (!document.hidden) tryPlay(); });
-  tryPlay();
-})();
+
 
 /* תמיד לפתוח בראש העמוד — בלי לשחזר גלילה קודמת */
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
